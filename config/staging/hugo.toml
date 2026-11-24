@@ -1,0 +1,4 @@
+# hugo --environment staging : the same site under the staging names.
+baseURL = "https://staging.mesocentre.plateau-de-saclay.net/"
+[params]
+  domain = "staging.mesocentre.plateau-de-saclay.net"

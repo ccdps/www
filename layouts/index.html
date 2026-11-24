@@ -1,0 +1,30 @@
+{{ define "main" }}
+{{- $img := resources.Get "plateau-saclay.jpg" -}}
+{{- $w1 := $img.Resize "800x webp q70" -}}
+{{- $w2 := $img.Resize "1600x webp q70" -}}
+{{- $w3 := $img.Resize "2400x webp q70" -}}
+{{- $j1 := $img.Resize "800x jpg q72" -}}
+{{- $j2 := $img.Resize "1600x jpg q72" -}}
+{{- $j3 := $img.Resize "2400x jpg q72" -}}
+{{- $d := site.Params.domain -}}
+<picture class="bg">
+  <source type="image/webp" sizes="100vw" srcset="{{ $w1.RelPermalink }} 800w, {{ $w2.RelPermalink }} 1600w, {{ $w3.RelPermalink }} 2400w">
+  <img src="{{ $j2.RelPermalink }}" sizes="100vw" srcset="{{ $j1.RelPermalink }} 800w, {{ $j2.RelPermalink }} 1600w, {{ $j3.RelPermalink }} 2400w" width="{{ $j2.Width }}" height="{{ $j2.Height }}" alt="" decoding="async" fetchpriority="high">
+</picture>
+<div class="veil"></div>
+<main>
+  <nav class="lang">{{ range .Translations }}<a href="{{ .RelPermalink }}" hreflang="{{ .Language.Locale }}" lang="{{ .Language.Locale }}">{{ .Language.Label }}</a>{{ end }}</nav>
+  <p class="eyebrow">{{ site.Params.eyebrow }}</p>
+  <h1>{{ site.Title }}</h1>
+  <p class="label">{{ site.Params.label }}</p>
+  <p class="tagline">{{ site.Params.tagline }}</p>
+  <ul class="cards" aria-label="{{ site.Params.servicesLabel }}">
+    <li><a href="https://login.{{ $d }}/"><strong>{{ site.Params.cLogin }}</strong><span>{{ site.Params.cLoginText }}</span></a></li>
+    <li><a href="https://collab.{{ $d }}/"><strong>{{ site.Params.cCollab }}</strong><span>{{ site.Params.cCollabText }}</span></a></li>
+    {{- if not (strings.HasPrefix $d "staging.") }}
+    <li><a href="https://sources.{{ $d }}/"><strong>{{ site.Params.cForge }}</strong><span>{{ site.Params.cForgeText }}</span></a></li>
+    {{- end }}
+  </ul>
+</main>
+<footer class="credit">{{ site.Params.credit | markdownify }}</footer>
+{{ end }}
