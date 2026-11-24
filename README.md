@@ -21,6 +21,10 @@ set by `params.domain`. The visible title is `title` (fr) and
   `static/img/mark-*.svg`) are copied unchanged from the CCDPS brand kit,
   `kit/` in [ccdps/brand](https://github.com/ccdps/brand). Update them there
   first, then copy.
+- `static/img/saml-logo-160.png` and `saml-logo-80.png` (same source) are the
+  `mdui:Logo` images that the SAML metadata of
+  `login.mesocentre.plateau-de-saclay.net` points to. Their URLs must stay
+  stable: federations cache the metadata.
 
 ## Build
 
