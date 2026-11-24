@@ -46,6 +46,8 @@ main {
 .lang { text-align: right; margin-bottom: 2rem; }
 .lang a { color: var(--accent); }
 h1 { font-size: clamp(2rem, 6vw, 3.5rem); line-height: 1.1; margin: 0 0 1rem; }
+.mark { display: block; margin: 0 0 1rem; }
+.mark img { display: block; width: 4.5rem; height: 4.5rem; }
 .eyebrow { margin: 0 0 0.25rem; font-weight: 700; letter-spacing: 0.15em; color: var(--accent); }
 .label { margin: 0 0 1rem; font-weight: 600; color: var(--muted); }
 .tagline { font-size: 1.15rem; color: var(--muted); margin: 0 0 2rem; max-width: 40rem; }

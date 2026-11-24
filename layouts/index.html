@@ -14,6 +14,10 @@
 <div class="veil"></div>
 <main>
   <nav class="lang">{{ range .Translations }}<a href="{{ .RelPermalink }}" hreflang="{{ .Language.Locale }}" lang="{{ .Language.Locale }}">{{ .Language.Label }}</a>{{ end }}</nav>
+  <picture class="mark">
+    <source srcset="/img/mark-inverse.svg" media="(prefers-color-scheme: dark)">
+    <img src="/img/mark-colour.svg" width="72" height="72" alt="">
+  </picture>
   <p class="eyebrow">{{ site.Params.eyebrow }}</p>
   <h1>{{ site.Title }}</h1>
   <p class="label">{{ site.Params.label }}</p>

@@ -6,6 +6,9 @@
 <title>{{ site.Params.pageTitle }}</title>
 <meta name="description" content="{{ site.Params.tagline }}">
 <meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 {{ with resources.Get "css/main.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">{{ end }}
 </head>
 <body>

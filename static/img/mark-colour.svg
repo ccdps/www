@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="t">
+  <title id="t">CCDPS</title>
+  <rect width="256" height="256" rx="20" fill="#121212"/>
+  <g fill="none" stroke="#ffffff" stroke-width="8" stroke-linejoin="miter"><path d="M43 199 H213"/><path d="M47 199 V121.25 L91 103 H113 V199"/><path d="M91 103 V199"/><path d="M65 112.25 V91.5 L133 57.5 L163 72.5 V199"/><path d="M133 57.5 V199"/><path d="M163 97 L177 92.25 L209 106.75 V199"/><path d="M177 92.25 V199"/></g>
+</svg>
