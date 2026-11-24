@@ -1,0 +1,53 @@
+# The landing page of https://ccdps.plateau-de-saclay.net/ (CCDPS).
+# Hugo is pinned in www/README.md. No theme, no module, no external asset.
+baseURL = "https://ccdps.plateau-de-saclay.net/"
+# The visible title is `title` here (fr) and languages.en.title below: one line each.
+title = "Centre de Calcul et de Données du Plateau de Saclay"
+defaultContentLanguage = "fr"
+defaultContentLanguageInSubdir = false
+disableKinds = ["taxonomy", "term", "rss", "sitemap", "robotstxt"]
+[params]
+  # Host the SERVICE links are built from (https://<service>.<domain>/); not the
+  # page's own host, which is baseURL.
+  domain = "mesocentre.plateau-de-saclay.net"
+
+[languages]
+  [languages.fr]
+    label = "Français"
+    locale = "fr"
+    weight = 1
+    [languages.fr.params]
+      eyebrow = "CCDPS"
+      pageTitle = "CCDPS — Centre de Calcul et de Données du Plateau de Saclay"
+      label = "Labellisé par la DGRI"
+      tagline = "Services numériques du CCDPS : connexion, collaboration et forge de développement."
+      # Image credit (Markdown): IGN orthophoto from Géoportail, Licence Ouverte.
+      credit = "Vue aérienne du Plateau de Saclay — © [IGN, Géoportail](https://www.geoportail.gouv.fr/) ([Licence Ouverte Etalab 2.0](https://www.etalab.gouv.fr/licence-ouverte-open-licence/))"
+      servicesLabel = "Services"
+      cLogin = "Connexion"
+      cLoginText = "Se connecter avec son compte"
+      cCollab = "Collaboration go-tex"
+      cCollabText = "Édition collaborative"
+      cForge = "Forge (Forgejo)"
+      cForgeText = "Dépôts de code source"
+  [languages.en]
+    label = "English"
+    locale = "en"
+    title = "Plateau de Saclay Computing and Data Centre (CCDPS)"
+    weight = 2
+    [languages.en.params]
+      eyebrow = "CCDPS"
+      pageTitle = "Plateau de Saclay Computing and Data Centre (CCDPS)"
+      label = "Accredited by the DGRI (French Ministry of Higher Education and Research, Directorate-General for Research and Innovation)"
+      tagline = "CCDPS digital services: sign-in, collaboration and a development forge."
+      credit = "Aerial view of the Plateau de Saclay — © [IGN, Géoportail](https://www.geoportail.gouv.fr/) ([Etalab Open Licence 2.0](https://www.etalab.gouv.fr/licence-ouverte-open-licence/))"
+      servicesLabel = "Services"
+      cLogin = "Sign in"
+      cLoginText = "Sign in with your account"
+      cCollab = "Collaboration go-tex"
+      cCollabText = "Collaborative editing"
+      cForge = "Forge (Forgejo)"
+      cForgeText = "Source code repositories"
+
+[minify]
+  minifyOutput = true

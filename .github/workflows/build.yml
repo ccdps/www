@@ -1,0 +1,55 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  hugo:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.167.0
+      # Digest GitHub records for hugo_extended_0.167.0_linux-amd64.tar.gz.
+      HUGO_SHA256: 0163f5c3deddac1f494a1629ddc40c65d18de9d5794facd98f7f96ac2c7d8957
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Hugo (extended, pinned and verified)
+        run: |
+          set -eu
+          f="hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+          curl -fsSL -o "$RUNNER_TEMP/$f" "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/$f"
+          echo "${HUGO_SHA256}  $RUNNER_TEMP/$f" | sha256sum -c -
+          mkdir -p "$RUNNER_TEMP/hugo"
+          tar -xzf "$RUNNER_TEMP/$f" -C "$RUNNER_TEMP/hugo" hugo
+          echo "$RUNNER_TEMP/hugo" >> "$GITHUB_PATH"
+
+      - name: Build production
+        run: hugo --minify --gc --destination "$RUNNER_TEMP/prod"
+
+      - name: Build staging
+        run: hugo --minify --gc --environment staging --destination "$RUNNER_TEMP/staging"
+
+      - name: Check the built pages
+        run: |
+          set -eu
+          for d in prod staging; do
+            for p in index.html en/index.html; do
+              test -s "$RUNNER_TEMP/$d/$p" || { echo "missing $d/$p"; exit 1; }
+            done
+          done
+          # The French page links to English and the English one to French.
+          grep -q 'hreflang=en lang=en>English<' "$RUNNER_TEMP/prod/index.html"
+          grep -q 'hreflang=fr lang=fr>Français<' "$RUNNER_TEMP/prod/en/index.html"
+          # Staging has no forge; production has one.
+          grep -q 'https://sources.mesocentre.plateau-de-saclay.net/' "$RUNNER_TEMP/prod/index.html"
+          # (not `! grep`: set -e ignores a negated command's failure)
+          if grep -q 'sources\.' "$RUNNER_TEMP/staging/index.html"; then echo "staging links a forge"; exit 1; fi
+          # No script: the Caddy CSP forbids it.
+          if grep -q '<script' "$RUNNER_TEMP/prod/index.html"; then echo "a script in the page"; exit 1; fi
