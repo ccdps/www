@@ -17,6 +17,11 @@ set by `params.domain`. The visible title is `title` (fr) and
   is one Markdown param per language, `credit`, in `config/_default/hugo.toml`.
   The repository licence covers the code, not this image.
 
+- Logo and favicons (`static/favicon.*`, `static/apple-touch-icon.png`,
+  `static/img/mark-*.svg`) are copied unchanged from the CCDPS brand kit,
+  `kit/` in [ccdps/brand](https://github.com/ccdps/brand). Update them there
+  first, then copy.
+
 ## Build
 
     hugo --minify --gc                        # production, into public/
